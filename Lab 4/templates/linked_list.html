@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}Linked List{% endblock %}
+{% block content %}
+<a class="back" href="{{ url_for('works') }}">&larr; Back to works</a>
+<h1>Linked List</h1>
+<p class="lead">Each box is a node. Use the controls below to change the list and watch it update.</p>
+
+{% with msgs = get_flashed_messages(with_categories=true) %}
+  {% for category, text in msgs %}<p class="msg {{ category }}" role="status">{{ text }}</p>{% endfor %}
+{% endwith %}
+
+<div class="chain" aria-label="Current list">
+  <span class="end-label">HEAD</span>
+  {% for item in items %}
+    <span class="node">{{ item }}</span><span class="arrow">&rarr;</span>
+  {% endfor %}
+  <span class="node none">None</span>
+  <span class="end-label">TAIL = {{ items[-1] if items else 'None' }}</span>
+</div>
+
+<div class="ops">
+  <form method="post" class="op">
+    <h2>Insert at beginning</h2>
+    <input name="value" placeholder="Value" aria-label="Value" required>
+    <button class="pill" name="action" value="insert_beginning">Insert</button>
+  </form>
+
+  <form method="post" class="op">
+    <h2>Insert at end</h2>
+    <input name="value" placeholder="Value" aria-label="Value" required>
+    <button class="pill" name="action" value="insert_end">Insert</button>
+  </form>
+
+  <form method="post" class="op">
+    <h2>Insert after</h2>
+    <input name="target" placeholder="After which value?" aria-label="After which value" required>
+    <input name="value" placeholder="New value" aria-label="New value" required>
+    <button class="pill" name="action" value="insert_after">Insert</button>
+  </form>
+
+  <form method="post" class="op">
+    <h2>Search</h2>
+    <input name="value" placeholder="Value" aria-label="Value" required>
+    <button class="pill" name="action" value="search">Search</button>
+  </form>
+
+  <form method="post" class="op">
+    <h2>Remove a value</h2>
+    <input name="value" placeholder="Value" aria-label="Value" required>
+    <button class="pill" name="action" value="remove_at">Remove</button>
+  </form>
+
+  <form method="post" class="op">
+    <h2>Remove first / last</h2>
+    <button class="pill" name="action" value="remove_beginning">Remove first</button>
+    <button class="pill" name="action" value="remove_end">Remove last</button>
+  </form>
+</div>
+
+<form method="post" class="reset">
+  <button class="pill" name="action" value="reset">Clear list</button>
+</form>
+{% endblock %}
