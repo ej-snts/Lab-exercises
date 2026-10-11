@@ -131,3 +131,11 @@ body.locked { overflow: hidden; }
 .op input:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
 .op .pill { padding: 10px 20px; }
 .reset { margin-top: 28px; }
+
+/* Infix to Postfix steps table */
+.steps { margin-top: 12px; width: 100%; max-width: 640px; border-collapse: collapse; overflow-wrap: anywhere; }
+.steps th, .steps td { text-align: left; padding: 10px 14px; border-bottom: 2px solid var(--line); }
+.steps th { color: var(--muted); font-size: .85rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+.steps td:first-child { color: var(--orange); font-weight: 800; }
+.result + h2 { margin-top: 32px; }
+.tool input#expression { max-width: 420px; }
