@@ -5,7 +5,7 @@
 {% block gate %}
 <div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-title" hidden>
   <div class="gate-box">
-    <h2 class="gate-title" id="gate-title">Our <mark>website</mark></h2>
+    <h2 class="gate-title" id="gate-title">EJ's <mark>Hub</mark></h2>
     <p class="gate-question">Are you from CpE?</p>
     <div class="gate-actions">
       <button class="pill" id="gate-yes" type="button">Yes, I'm from CpE - Enter</button>
@@ -16,7 +16,7 @@
 {% endblock %}
 
 {% block content %}
-<h1>Welcome to Our <mark>Website</mark></h1>
+<h1>Welcome to EJ's <mark>Hub</mark></h1>
 <p class="lead">{{ p.tagline }}</p>
 <div class="actions">
   <a class="pill" href="{{ url_for('profile') }}">View profile</a>
