@@ -1,6 +1,7 @@
 import math
 from flask import Flask, render_template, request, redirect, url_for, flash
 from linked_list import LinkedList
+from stack import infix_to_postfix
 
 app = Flask(__name__)
 app.secret_key = "change-me"
@@ -85,6 +86,19 @@ def triangle():
     return render_template("triangle.html", base=base, height=height, area=area, error=error)
 
 
+@app.route("/infix-to-postfix", methods=["GET", "POST"])
+def postfix():
+    expression = result = error = None
+    steps = []
+    if request.method == "POST":
+        expression = request.form.get("expression", "").strip()
+        try:
+            result, steps = infix_to_postfix(expression)
+        except ValueError as e:
+            error = str(e)
+    return render_template("postfix.html", expression=expression, result=result, steps=steps, error=error)
+
+
 ll = LinkedList()
 for _v in (10, 20, 30):
     ll.insert_at_end(_v)
@@ -156,7 +170,7 @@ def linked_list():
         elif action == "reset":
             ll.head = ll.tail = None
             flash("The list was cleared.", "ok")
-        return redirect(url_for("linked_list"))   # avoids re-submitting on refresh
+        return redirect(url_for("linked_list"))   
     return render_template("linked_list.html", items=list_items())
 
 
