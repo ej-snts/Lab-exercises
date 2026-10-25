@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Area of a Circle{% endblock %}
+{% block content %}
+<a class="back" href="{{ url_for('works') }}">&larr; Back to works</a>
+<h1>Area of a Circle</h1>
+<p class="lead">Formula: area = &pi; &times; r&sup2;</p>
+<form method="post" class="tool">
+  <label for="radius">Radius</label>
+  <input id="radius" name="radius" type="number" step="any" min="0" value="{{ radius if radius else '' }}" required>
+  <button class="pill" type="submit">Calculate</button>
+</form>
+{% if error %}<p class="error" role="alert">{{ error }}</p>{% endif %}
+{% if area is not none %}
+<div class="result" role="status"><span>Area for r = {{ radius }}</span><strong>{{ '%.2f'|format(area) }}</strong></div>
+{% endif %}
+{% endblock %}

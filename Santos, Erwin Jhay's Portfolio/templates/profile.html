@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+<section class="profile">
+  <div class="avatar" aria-hidden="true">
+    {{ p.name.split()[0][0] }}{{ p.name.split()[-1][0] }}
+    <img src="{{ url_for('static', filename='me.jpg') }}" alt="" onerror="this.remove()">
+  </div>
+  <div>
+    <h1>{{ p.name }}</h1>
+    <p class="lead">{{ p.course }} &middot; {{ p.year }}<br>{{ p.school }}</p>
+  </div>
+</section>
+
+<div class="center-btn"><a class="pill" href="{{ url_for('contact') }}">Contact me</a></div>
+{% endblock %}
