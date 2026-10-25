@@ -1,1 +1,1 @@
-# Lab exercises 3-5 uploaded
+# Lab exercises 3-6 uploaded
