@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Works{% endblock %}
+{% block content %}
+<h1>My programming works</h1>
+<p class="lead">Small programs I built with Python and Flask. Pick one to try it.</p>
+<ul class="cards works">
+  <li><a class="card work" href="{{ url_for('touppercase') }}">
+    <div class="glyph text" aria-hidden="true">aA</div>
+    <div><strong>toUpperCase</strong><span>Turn text into capital letters</span></div></a></li>
+  <li><a class="card work" href="{{ url_for('circle') }}">
+    <div class="glyph" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4"><circle cx="32" cy="32" r="26"/><path d="M32 32h26" stroke-linecap="round"/></svg></div>
+    <div><strong>Area of a Circle</strong><span>&pi; &times; r&sup2;</span></div></a></li>
+  <li><a class="card work" href="{{ url_for('triangle') }}">
+    <div class="glyph" aria-hidden="true"><svg viewBox="0 0 72 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"><path d="M6 58 36 6l30 52Z"/></svg></div>
+    <div><strong>Area of a Triangle</strong><span>&frac12; &times; base &times; height</span></div></a></li>
+  <li><a class="card work" href="{{ url_for('linked_list') }}">
+    <div class="glyph" aria-hidden="true"><svg viewBox="0 0 120 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"><rect x="4" y="20" width="28" height="24" rx="6"/><rect x="46" y="20" width="28" height="24" rx="6"/><rect x="88" y="20" width="28" height="24" rx="6"/><path d="M32 32h14M74 32h14"/></svg></div>
+    <div><strong>Linked List</strong><span>Insert, search and remove nodes</span></div></a></li>
+  <li><a class="card work" href="{{ url_for('postfix') }}">
+    <div class="glyph text" aria-hidden="true">A+B</div>
+    <div><strong>Infix to Postfix</strong><span>Convert an expression using a stack</span></div></a></li>
+  <li><a class="card work" href="{{ url_for('queues_deques') }}">
+    <div class="glyph" aria-hidden="true"><svg viewBox="0 0 120 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><rect x="20" y="20" width="24" height="24" rx="6"/><rect x="48" y="20" width="24" height="24" rx="6"/><rect x="76" y="20" width="24" height="24" rx="6"/><path d="M2 32h12m-5-5 5 5-5 5M106 32h12m-5-5 5 5-5 5"/></svg></div>
+    <div><strong>Queues and Deques</strong><span>First in, first out: enqueue, dequeue and peek</span></div></a></li>
+  <li><a class="card work" href="{{ url_for('sorting') }}">
+    <div class="glyph" aria-hidden="true"><svg viewBox="0 0 96 64" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"><path d="M12 58V38M30 58V14M48 58V46M66 58V26M84 58V6"/></svg></div>
+    <div><strong>Sorting Algorithms</strong><span>Bubble, selection, insertion, merge and quick sort, animated</span></div></a></li>
+</ul>
+{% endblock %}

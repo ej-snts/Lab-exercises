@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Infix to Postfix{% endblock %}
+{% block content %}
+<a class="back" href="{{ url_for('works') }}">&larr; Back to works</a>
+<h1>Infix to Postfix</h1>
+<p class="lead">Type an infix expression and get its postfix form. Supports + &minus; &times; / % ^ and parentheses.</p>
+<form method="post" class="tool">
+  <label for="expression">Infix expression</label>
+  <input id="expression" name="expression" placeholder="e.g. A + B * (C - D)" value="{{ expression or '' }}" required>
+  <button class="pill" type="submit">Convert</button>
+</form>
+{% if error %}<p class="error" role="alert">{{ error }}</p>{% endif %}
+{% if result %}
+<div class="result" role="status"><span>Postfix of {{ expression }}</span><strong>{{ result }}</strong></div>
+
+<h2>Step by step</h2>
+<table class="steps">
+  <thead><tr><th>Token</th><th>Stack (bottom &rarr; top)</th><th>Output</th></tr></thead>
+  <tbody>
+  {% for s in steps %}
+    <tr><td>{{ s.token }}</td><td>{{ s.stack or '(empty)' }}</td><td>{{ s.output }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Sorting Algorithms{% endblock %}
+{% block content %}
+<a class="back" href="{{ url_for('works') }}">&larr; Back to works</a>
+<h1>Sorting Algorithms</h1>
+<p class="lead">Type some numbers, pick a sorting algorithm and watch it work, one comparison at a time.</p>
+<form method="post" class="tool sort-form">
+  <label for="numbers">Numbers</label>
+  <input id="numbers" name="numbers" placeholder="e.g. 5, 3, 8, 1, 9, 2" value="{{ numbers_text or '' }}" required>
+  <small class="hint">Separate them with commas or spaces. Use 2 to 20 numbers.</small>
+  <label for="algorithm">Algorithm</label>
+  <select id="algorithm" name="algorithm">
+    {% for key, a in algorithms.items() %}
+    <option value="{{ key }}" {% if key == algorithm %}selected{% endif %}>{{ a.name }}</option>
+    {% endfor %}
+  </select>
+  <button class="pill" type="submit">Sort</button>
+</form>
+{% if error %}<p class="error" role="alert">{{ error }}</p>{% endif %}
+{% if result %}
+<div class="result sort-result" role="status"><span>{{ info.name }} result</span><strong>{{ result|join(', ') }}</strong></div>
+<p class="sort-about"><strong>{{ info.name }}.</strong> {{ info.about }} <span>{{ info.time }}</span></p>
+
+<h2 class="sort-heading">Watch it sort</h2>
+<section class="stage" aria-label="Sorting animation">
+  <div class="bars" id="bars" role="img" aria-label="Bars showing the list while it is being sorted"></div>
+  <p class="sort-note" id="sort-note" role="status"></p>
+  <p class="sort-meta">
+    <span id="step-text"></span>
+    <span>Comparisons: <b id="cmp-count">0</b></span>
+    <span>Swaps / writes: <b id="mov-count">0</b></span>
+  </p>
+  <div class="sort-controls">
+    <button class="pill" id="btn-restart" type="button">Restart</button>
+    <button class="pill" id="btn-prev" type="button">&larr; Back</button>
+    <button class="pill" id="btn-play" type="button">Play</button>
+    <button class="pill" id="btn-next" type="button">Next &rarr;</button>
+    <label class="speed" for="speed">Speed
+      <input id="speed" type="range" min="1" max="5" value="3" aria-label="Animation speed, slow to fast">
+    </label>
+  </div>
+  <ul class="legend" aria-label="Colour key">
+    <li><span class="swatch idle" aria-hidden="true"></span>Waiting</li>
+    <li><span class="swatch active" aria-hidden="true"></span>Being compared or moved</li>
+    <li><span class="swatch pivot" aria-hidden="true"></span>Pivot / marker</li>
+    <li><span class="swatch sorted" aria-hidden="true"></span>In place</li>
+  </ul>
+  <noscript><p class="msg error">Turn on JavaScript to watch the animation.</p></noscript>
+</section>
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+{% if steps %}
+<script id="sort-steps" type="application/json">{{ steps|tojson }}</script>
+<script src="{{ url_for('static', filename='sorting.js') }}"></script>
+{% endif %}
+{% endblock %}
